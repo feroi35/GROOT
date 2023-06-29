@@ -66,7 +66,7 @@ class DecisionTreeAttackWrapper(AttackWrapper):
     def adversarial_examples(self, X, y, order, options={}):
         # Turn 'leaves' into bounding boxes and leaf prediction values
         bound_dicts, leaf_values = zip(*self.leaves)
-        predictions = [value > 0 for value in leaf_values]
+        predictions = [value >= 0 for value in leaf_values]
         bounding_boxes = []
         for bound_dict in bound_dicts:
             bounding_box = np.tile(np.array([-np.inf, np.inf]), (X.shape[1], 1))
